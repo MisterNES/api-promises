@@ -14,9 +14,10 @@ const getHomeWorld = person => {
 }
 
 const getFilm = person => {
-    const film = Promise.all(person.films);
-    return fetch(film)
-    .then(response => response.json())
+    console.log(person.films);
+    const film = Promise.all(person.films.map(url => fetch(url).then(res => res.json())));
+    return film
+        .then(result => console.log(result));
 }
 
 getPerson(1)
